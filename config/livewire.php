@@ -129,7 +129,33 @@ return [
     'navigate' => [
         'show_progress_bar' => true,
         'progress_bar_color' => '#2299dd',
+        'preload_on_hover' => false, // Disable preloading on hover
+        'preload_on_intersect' => false, // Disable preloading on intersection
+        'preload_links' => false, // Disable automatic link preloading
     ],
+
+    /*
+    |---------------------------------------------------------------------------
+    | Back Button Cache
+    |---------------------------------------------------------------------------
+    |
+    | When using wire:navigate, Livewire will cache the page state in the browser
+    | history. This can cause issues with forms and other stateful components.
+    | You can disable this behavior here.
+    |
+    */
+    'back_button_cache' => false,
+
+    /*
+    |---------------------------------------------------------------------------
+    | Optimize Livewire Script Loading
+    |---------------------------------------------------------------------------
+    |
+    | This setting optimizes how Livewire scripts are loaded to reduce
+    | preload warnings and improve performance.
+    |
+    */
+    'optimize_script_loading' => true,
 
     /*
     |---------------------------------------------------------------------------

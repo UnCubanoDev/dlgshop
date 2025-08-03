@@ -1,5 +1,6 @@
 @props(['product'])
 
+@if($product->defaultUrl)
 <a class="block group"
    href="{{ route('product.view', $product->defaultUrl->slug) }}"
    wire:navigate
@@ -24,3 +25,4 @@
         <x-product-price :product="$product" />
     </p>
 </a>
+@endif

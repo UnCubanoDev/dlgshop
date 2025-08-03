@@ -21,6 +21,16 @@ class AppServiceProvider extends ServiceProvider
             ])
         )
             ->register();
+
+        // Configure Livewire for admin panel
+        if (request()->is('lunar*')) {
+            config([
+                'livewire.navigate.preload_on_hover' => false,
+                'livewire.navigate.preload_on_intersect' => false,
+                'livewire.navigate.preload_links' => false,
+                'livewire.optimize_script_loading' => true,
+            ]);
+        }
     }
 
     /**
@@ -37,5 +47,11 @@ class AppServiceProvider extends ServiceProvider
             \App\Models\Product::class,
             // \App\Models\CustomProduct::class,
         );
+
+        // Additional configuration for admin panel
+        if (request()->is('lunar*')) {
+            // Disable Livewire navigation for admin panel
+            config(['livewire.navigate.enabled' => false]);
+        }
     }
 }

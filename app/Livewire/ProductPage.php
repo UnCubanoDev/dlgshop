@@ -81,6 +81,9 @@ class ProductPage extends Component
      */
     public function getProductProperty(): Product
     {
+        if (!$this->url || !$this->url->element) {
+            abort(404);
+        }
         return $this->url->element;
     }
 
@@ -89,6 +92,9 @@ class ProductPage extends Component
      */
     public function getImagesProperty(): Collection
     {
+        if (!$this->product) {
+            return collect();
+        }
         return $this->product->media->sortBy('order_column');
     }
 
@@ -97,6 +103,10 @@ class ProductPage extends Component
      */
     public function getImageProperty(): ?Media
     {
+        if (!$this->variant || !$this->images) {
+            return null;
+        }
+
         if (count($this->variant->images)) {
             return $this->variant->images->first();
         }

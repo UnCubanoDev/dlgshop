@@ -20,9 +20,18 @@ trait FetchesUrls
      */
     public function fetchUrl($slug, $type, $eagerLoad = []): ?Url
     {
-        return Url::whereElementType($type)
-            ->whereDefault(true)
-            ->whereSlug($slug)
-            ->with($eagerLoad)->first();
+        try {
+            return Url::whereElementType($type)
+                ->whereDefault(true)
+                ->whereSlug($slug)
+                ->with($eagerLoad)->first();
+        } catch (\Exception $e) {
+            \Log::error('Error fetching URL', [
+                'slug' => $slug,
+                'type' => $type,
+                'error' => $e->getMessage()
+            ]);
+            return null;
+        }
     }
 }

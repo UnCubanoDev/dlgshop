@@ -34,6 +34,9 @@ class CollectionPage extends Component
      */
     public function getCollectionProperty(): mixed
     {
+        if (!$this->url || !$this->url->element) {
+            abort(404);
+        }
         return $this->url->element;
     }
 
